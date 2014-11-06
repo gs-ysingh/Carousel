@@ -1,0 +1,29 @@
+﻿
+/*http://codepen.io/anon/pen/lGquo*/
+
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #FFF;
+}
+.image_carousel {    
+    height: 208px;
+}
+#foo1 {
+    width: 320px;
+    height: 208px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 120px;
+    margin-top: 10px;
+}
+button.prev {
+    margin-left: 250px;
+    margin-top: 10px;
+}
+button {
+    cursor: pointer;
+}
