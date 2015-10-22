@@ -1,1 +1,1 @@
-$('.image_carousel').carousel();
+$('#carousel ul').carousel();

@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Take notes online</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="styles/style.css" rel="stylesheet" />
-   </head>
-   <body>
-<div class="image_carousel">
-   <div id="foo1">
-      <img src="http://lorempixel.com/400/200/sports/1/" alt="Train" width="320" height="208" />
-      <img src="http://lorempixel.com/400/200/sports/2/" alt="Car" width="320" height="208" />
-    <img src="http://lorempixel.com/400/200/sports/3/" alt="Bike" width="320" height="208" />
-    <img src="http://lorempixel.com/400/200/sports/4/" alt="House" width="320" height="208" />
-    <img src="http://lorempixel.com/400/200/sports/5/" alt="House" width="320" height="208" />
-    <img src="http://lorempixel.com/400/200/sports/6/" alt="House" width="320" height="208" />    
-   </div>
-   <div class="clearfix"></div>
-   <button class="prev"><</button>
-   <button class="next">></button>
-</div>
-
+  <head>
+    <title>Carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section id="carousel" class="photos">
+      <ul>
+        <li class="one_photo"><a name="img" href="images/1_large.jpg"><img name="img" src="images/1_large.jpg"></a></li>
+        <li class="one_photo"><a name="img" href="images/2_large.jpg"><img name="img" src="images/2_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/3_large.jpg"><img name="img" src="images/3_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/4_large.jpg"><img name="img" src="images/4_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/5_large.jpg"><img name="img" src="images/5_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/6_large.jpg"><img name="img" src="images/6_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/7_large.jpg"><img name="img" src="images/7_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/8_large.jpg"><img name="img" src="images/8_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/9_large.jpg"><img name="img" src="images/9_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/10_large.jpg"><img name="img" src="images/10_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/11_large.jpg"><img name="img" src="images/11_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/12_large.jpg"><img name="img" src="images/12_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/13_large.jpg"><img name="img" src="images/13_large.jpg"  class=""></a></li>
+        <li class="one_photo"><a name="img" href="images/14_large.jpg"><img name="img" src="images/14_large.jpg"  class=""></a></li>
+      </ul>
+      <div class="prevImage"><img src="images/left.png"></div>
+      <div class="nextImage"><img src="images/right.png"></div>
+    </section>
   </body>
-   <script src = "scripts/jquery-latest.min.js"></script>
-   <script src = "scripts/carousel.js"></script>
-   <script src = "scripts/app.js"></script>
+  <script src = "scripts/jquery-latest.min.js"></script>
+  <script src = "scripts/carousel.js"></script>
+  <script src = "scripts/app.js"></script>
 </html>

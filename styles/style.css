@@ -1,29 +1,74 @@
-﻿
-/*http://codepen.io/anon/pen/lGquo*/
-
-* {
-	margin: 0;
-}
-html, body {
-	height: 100%;
+﻿html, body {
+    height: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #FFF;
+    color: #FFF
 }
-.image_carousel {    
-    height: 208px;
+header, nav, section, article, aside, footer {
+    display: block
 }
-#foo1 {
-    width: 320px;
-    height: 208px;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: 120px;
-    margin-top: 10px;
+section {
+    margin: 0 0 20px 0;
+    clear: both
 }
-button.prev {
-    margin-left: 250px;
-    margin-top: 10px;
+.photos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
 }
-button {
+.photos .one_photo {
+    display: inline
+}
+#prev {
+    float: left;
     cursor: pointer;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    background-color: #e6edf6;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+#next {
+    float: right;
+    cursor: pointer;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    background-color: #e6edf6;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+#carousel ul, #carousel li {
+    padding: 0;
+    list-style: none;
+    list-style-type: none
+}
+#carousel ul {
+    position: relative;
+    margin: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 840px
+}
+#carousel li {
+    display: inline-block;
+    border: none;
+    overflow: hidden;
+    width: 840px;
+    height: 460px
+}
+.prevImage img, .nextImage img {
+    width: 50px
+}
+.prevImage, .nextImage {
+    position: absolute;
+    top: 310px;
+    cursor: pointer
+}
+.nextImage {
+    right: 165px
 }
