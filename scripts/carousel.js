@@ -92,7 +92,6 @@ var lib = (function () {
         }
     }
 
-
     init.prototype.bindEvents = function () {
         $(this.model.element).find('.prevImage').on('click', slidePrev.bind(this));
         $(this.model.element).find('.nextImage').on('click', slideNext.bind(this));
