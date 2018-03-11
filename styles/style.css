@@ -6,69 +6,59 @@
 header, nav, section, article, aside, footer {
     display: block
 }
-section {
-    margin: 0 0 20px 0;
-    clear: both
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.photos ul {
+.container img, .container a {
+    height: 100%;
+    width: 100%;
+}
+.container .photos ul {
     list-style: none;
+    font-size:0;
     padding: 0;
     margin: 0
 }
-.photos .one_photo {
-    display: inline
-}
-#prev {
-    float: left;
-    cursor: pointer;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    background-color: #e6edf6;
-    padding-top: 10px;
-    padding-bottom: 10px
-}
-#next {
-    float: right;
-    cursor: pointer;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    background-color: #e6edf6;
-    padding-top: 10px;
-    padding-bottom: 10px
-}
-#carousel ul, #carousel li {
+.container ul, .container li {
     padding: 0;
     list-style: none;
-    list-style-type: none
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
 }
-#carousel ul {
+.container ul {
     position: relative;
     margin: auto;
     overflow-x: hidden;
     white-space: nowrap;
-    width: 840px
 }
-#carousel li {
+.container li {
     display: inline-block;
     border: none;
-    overflow: hidden;
-    width: 840px;
-    height: 460px
+    overflow: hidden
 }
-.prevImage img, .nextImage img {
-    width: 50px
-}
-.prevImage, .nextImage {
+.prevImage {
     position: absolute;
-    top: 310px;
-    cursor: pointer
+    left: 20px;
 }
 .nextImage {
-    right: 165px
+    position: absolute;
+    right: 20px;
+}
+
+.nextImage img, .prevImage img {
+    width: 50px;
+}
+
+.vertical .prevImage {
+    left: 220px;
+    top: 20px;
+}
+
+.vertical .nextImage {
+    left: 220px;
+    top: 350px;
 }

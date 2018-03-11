@@ -1,99 +1,118 @@
-(function($) {
-	$.fn.carousel = function(options) {
-		var images = $(this).find('img');
-		var count = 0;
-		var sInterval = '';
-		options = $.extend({}, $.fn.carousel.config, options);
-		$(images[count]).addClass(options.activeClass);
+var lib = (function () {
+    function carousel(options) {
+        if(isValid(options)) {
+            return new init(options);
+        }
+    }
 
-		var slideCarousel = function() {
-			if (count < images.length - 1) {
-				$(images).removeClass(options.activeClass);
-				$(images[count + 1]).addClass(options.activeClass);
-				var totalWidth = $(images[count]).outerWidth();
-				$(images[count]).parent()
-					.parent()
-					.animate({
-							"margin-left": "-" + totalWidth -5 + "px"
-						},
-						options.nextprevTimeInterval);
-				count++;
-			} else {
-				count = 0;
-				$(images).parent()
-					.parent()
-					.animate({
-							'margin-left': '0'
-						},
-						options.nextprevTimeInterval);
-				$(images).removeClass(options.activeClass);
-				$(images[count]).addClass(options.activeClass);
-			}
-		}
-		var slidePrevCarousel = function() {
-			if (count > 0) {
-				$(images).removeClass(options.activeClass);
-				$(images[count - 1]).addClass(options.activeClass);
-				$(images[count - 1]).parent()
-					.parent()
-					.animate({
-						"margin-left": "0px"
-					});
-				count--;
-			} else {
-				count = $(images).length - 1;
-				$(images).removeClass(options.activeClass);
-				$(images[count]).addClass(options.activeClass);
-				var totalWidth = $(images[count]).outerWidth();
-				for (var i = 0; i < $(images).length - 1; i++) {
-					$(images[i]).parent()
-						.parent()
-						.animate({
-							"margin-left": "-" + totalWidth -5 + "px"
-						});
-				}
-			}
-		}
+    function isValid(options) {
+        if(!validateElement(options.element)) {
+            return false;
+        }
+        return true;
+    }
 
-		var carouselInterval = function() {
-			sInterval = setInterval(function() {
-				slideCarousel();
-			}, options.defaultTimeInterval);
-		}
+    function getElement(ele) {
+        var res;
 
-		var setActive = function() {
-			for (var counter = 0; counter < images.length; counter++) {
-				if (document.URL.split('/')
-					.slice(0, -1)
-					.join('/') + '/' + $('.' + options.activeClass).attr('src') == $('.' + options.activeClass).attr('src')) {
-					count = counter;
-					break;
-				}
-			}
-		}
+        if(!ele) {
+            console.warn('Element not present in page');
+            return false;
+        }
 
-		carouselInterval();
+        if(typeof ele == 'string') {
+            res = document.querySelectorAll(ele);
+        }
+        else if(ele.length) {
+            res = ele;
+        }
+        else {
+            res = [ele];
+        }
 
-		$(this).parent().find('.' + options.nextClass).click(function() {
-			clearInterval(sInterval);
-			setActive();
-			slideCarousel();
-			carouselInterval();
-		});
+        if(res.length == 0) {
+            console.warn('Element not present in page');
+            return false;
+        }
 
-		$(this).parent().find('.' + options.prevClass).click(function() {
-			clearInterval(sInterval);
-			setActive();
-			slidePrevCarousel();
-			carouselInterval();
-		});
-		return this;
-	}
-	$.fn.carousel.config = {
-		defaultTimeInterval: 2000,
-		nextprevTimeInterval: 500, //should be less than defaultTimeInterval
-		nextClass: 'nextImage',
-		prevClass: 'prevImage',
-		activeClass: 'active'
-	};
-})(jQuery);
+        return res;
+    }
+
+    function validateElement(ele) {
+        if(typeof ele == 'undefined') {
+            console.warn("Please provide valid element");
+            return false;
+        }
+
+        ele = getElement(ele);
+
+        if(!ele) {
+            return false;
+        }
+
+        return true;
+    }
+
+    init.prototype.render = function () {
+        $(this.model.element).addClass('container');
+        $(this.model.element).css({ width: this.model.width, height: this.model.height });
+        if(this.model.orientation === 'horizontal') {
+            $(this.model.element).addClass('horizontal');
+        }
+        else {
+            $(this.model.element).addClass('vertical');
+        }
+    }
+
+    function slidePrev() {
+        if(this.count > 0) {
+            this.count--;
+            if(this.model.orientation === 'horizontal') {
+                $($(this.model.element).find('.one_photo')[this.count]).animate({'margin-left': '0px'});
+            }
+            else {
+                $($(this.model.element).find('.one_photo')[this.count]).animate({'margin-top': '0px'});
+            }
+        }
+    }
+
+     function slideNext() {
+        if(this.count < this.images - 1) {
+            if(this.model.orientation === 'horizontal') {
+                $($(this.model.element)
+	                .find('.one_photo')[this.count])
+	                .animate({'margin-left': '-' + ($(this.model.element).find('ul').width() + 5) + 'px'});
+            }
+            else {
+                $($(this.model.element)
+	                .find('.one_photo')[this.count])
+	                .animate({'margin-top': '-' + ($(this.model.element).find('ul').width() + 5) + 'px'});
+            }
+            this.count++;
+        }
+    }
+
+
+    init.prototype.bindEvents = function () {
+        $(this.model.element).find('.prevImage').on('click', slidePrev.bind(this));
+        $(this.model.element).find('.nextImage').on('click', slideNext.bind(this));
+    }
+
+    function init(options) {
+        this.model = options;
+        this.defaultConfig = {
+            orientation: 'horizontal',
+            visibleItems: 1
+        };
+
+        this.model = Object.assign(this.defaultConfig, this.model);
+        this.count = 0;
+        this.images = $(this.model.element).find('.one_photo').length;
+        this.render();
+        this.bindEvents();
+    }
+
+    return {
+        carousel: carousel
+    }
+})();
